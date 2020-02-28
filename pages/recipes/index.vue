@@ -1,30 +1,53 @@
 <template>
   <section class="recipes">
-    <article class="recipe">
-      <div></div>
-      <h1>Title</h1>
-      <p>SOme nice text</p>
-    </article>
-    <article class="recipe">
-      <div></div>
-      <h1>Title</h1>
-      <p>SOme nice text</p>
-    </article>
+    <recipe
+      v-for="recipe in recipes"
+      :key="recipe.id"
+      :title="recipe.title"
+      :thumbnail="recipe.thumbnail"
+      :previewText="recipe.previewText"
+      :id="recipe.id"
+    >
+    </recipe>
   </section>
 </template>
 
-<style scoped>
+<script>
+  import recipe from '@/components/Recipe'
+  export default {
+    components: {
+      recipe
+    },
+    asyncData () {
+      return new Promise((resolve,reject) => {
+        setTimeout(() => {
+          resolve({
+            recipes: [
+              {
+                title: 'Title',
+                thumbnail: '/img/recipe-1.jpg',
+                previewText: 'Some nice text',
+                id: '1'
+              },
+              {
+                title: 'Title',
+                thumbnail: '/img/recipe-2.jpg',
+                previewText: 'Some nice text',
+                id: '2'
+              }
+            ]
+          })
+        }, 1500)
+      })
+    }
+  }
+</script>
 
-.recipes{
+<style scoped>
+.recipes {
   display:flex;
   flex-wrap: wrap;
-}
-
-.recipe {
-  box-sizing:border-box;
-  width:280px;
-  padding:8px;
-  border:1px solid #ccc;
-  box-shadow: 0 2px 2px #aaa
+  justify-content: center;
+  align-items: center;
 }
 </style>

@@ -1,8 +1,18 @@
 <template>
   <div>
+    <navbar></navbar>
     <nuxt />
   </div>
 </template>
+
+<script>
+import navbar from '@/components/Header'
+export default {
+  components: {
+    navbar
+  }
+}
+</script>
 
 <style>
 html {
